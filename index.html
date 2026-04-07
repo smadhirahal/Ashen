@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Premium YouTube thumbnail artist portfolio." />
+  <title>Ashen Studio — Thumbnail Artist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-bg: #050505;
+      --color-surface: #111111;
+      --color-surface-light: #1a1a1a;
+      --color-border: rgba(255, 255, 255, 0.08);
+      --color-text: #ffffff;
+      --color-text-muted: #888888;
+      --color-accent: #008B8B;
+      --color-accent-glow: rgba(0, 139, 139, 0.4);
+
+      --font-sans: 'Inter', sans-serif;
+      --font-display: 'Outfit', sans-serif;
+
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+      --glass-bg: rgba(17, 17, 17, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.05);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ── UTILITIES ───────────────────────────────────────────── */
+    .text-red {
+      color: var(--color-accent);
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease, border-color 0.3s ease;
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.06), transparent 40%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 50vw;
+      height: 50vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 139, 139, 0.08) 0%, rgba(5, 5, 5, 0) 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(80px);
+      transition: transform 0.1s ease-out;
+    }
+
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .section-desc {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── BUTTONS ─────────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-accent);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-family: var(--font-display);
+      transition: var(--transition-fast);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--color-accent-glow);
+    }
+
+    .btn-primary:hover {
+      background-color: #00a8a8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 139, 139, 0.6);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-family: var(--font-display);
+      transition: var(--transition-fast);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────────────────── */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
+
+    .reveal-visible {
+      opacity: 1;
+      transform: translate(0);
+    }
+
+    /* ── PARTICLES ───────────────────────────────────────────── */
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── NAVBAR ──────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: var(--transition-normal);
+      padding: 24px 0;
+    }
+
+    #navbar.scrolled {
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 16px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 101;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--color-text);
+    }
+
+    .btn-nav {
+      padding: 10px 20px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: var(--transition-fast);
+    }
+
+    .btn-nav:hover {
+      background-color: var(--color-text);
+      color: var(--color-bg);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--color-text);
+      transition: var(--transition-fast);
+    }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+
+    .hero-bg-gradient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(0, 139, 139, 0.15) 0%, rgba(5, 5, 5, 0) 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(0, 139, 139, 0.1);
+      border: 1px solid rgba(0, 139, 139, 0.2);
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      margin-bottom: 24px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .hero-headline .line {
+      display: block;
+    }
+
+    .accent-glow {
+      background: linear-gradient(90deg, #ffffff, var(--color-accent), #ffffff);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shine 4s linear infinite;
+      text-shadow: 0 0 40px rgba(0, 139, 139, 0.3);
+    }
+
+    @keyframes shine {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 80px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      padding-top: 48px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .stat-plus {
+      color: var(--color-accent);
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 40px;
+      background-color: var(--color-border);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--color-accent), transparent);
+      animation: scroll-down 2s infinite;
+    }
+
+    @keyframes scroll-down {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+
+      50.1% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+    }
+
+    /* ── INTERACTIVE 3D LAYERS (SCROLL PINNED) ──────────── */
+    #gallery {
+      display: block;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    .scroll-track {
+      height: 300vh;
+      position: relative;
+      width: 100%;
+    }
+
+    .sticky-wrapper {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .thumbnail-box {
+      position: relative;
+      width: 800px;
+      height: 450px;
+      overflow: hidden;
+      border-radius: 15px;
+      cursor: crosshair;
+    }
+
+    .layer {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      width: calc(100% + 40px);
+      height: calc(100% + 40px);
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.4s ease, transform 0.1s ease-out;
+    }
+
+    #background-layer {
+      opacity: 1;
+    }
+
+    #front-image,
+    #image-two,
+    #image-three {
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      object-fit: contain;
+    }
+
+    #image-two {
+      top: -10%;
+    }
+
+    /* ── BEFORE & AFTER THUMBNAIL SLIDER (2x5 GRID) ─────── */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .ba-item {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: crosshair;
+      border: 1px solid var(--color-border);
+      background-color: var(--color-surface);
+    }
+
+    .img-sketch,
+    .img-final {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .img-final {
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    }
+
+    .ba-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: var(--color-accent);
+      pointer-events: none;
+      transform: translateX(-50%);
+      box-shadow: 0 0 15px var(--color-accent);
+    }
+
+    .ba-item:not(.is-hovering) .img-final {
+      transition: clip-path 0.3s ease-out;
+    }
+
+    .ba-item:not(.is-hovering) .ba-divider {
+      transition: left 0.3s ease-out;
+    }
+
+    /* ── CASE STUDY ──────────────────────────────────────────── */
+    .case-study-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .cs-img-frame {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--color-border);
+    }
+
+    .cs-img-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cs-badge {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      padding: 16px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .badge-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--color-accent);
+    }
+
+    .badge-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-top: 4px;
+    }
+
+    .cs-label {
+      display: inline-block;
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .cs-title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .cs-desc {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: 40px;
+    }
+
+    .cs-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .metric-card {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .metric-key {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+
+    .cs-quote {
+      padding: 24px;
+      border-left: 4px solid var(--color-accent);
+      margin-bottom: 40px;
+    }
+
+    .cs-quote p {
+      font-size: 1.125rem;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .cs-quote cite {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      font-style: normal;
+    }
+
+    /* ── ABOUT ───────────────────────────────────────────────── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-avatar {
+      width: 300px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .avatar-ring {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-surface-light), var(--color-bg));
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .avatar-icon {
+      font-size: 2rem;
+      color: var(--color-accent);
+    }
+
+    .avatar-label {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .about-accent-line {
+      position: absolute;
+      top: 50%;
+      left: -20%;
+      right: -20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+      transform: translateY(-50%) rotate(-15deg);
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .about-desc {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+    }
+
+    .about-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 40px 0;
+    }
+
+    .skill-tag {
+      padding: 8px 16px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      font-size: 0.875rem;
+    }
+
+    .about-creds {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cred {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 1rem;
+    }
+
+    .cred-icon {
+      color: var(--color-accent);
+      font-size: 0.75rem;
+      margin-top: 4px;
+    }
+
+    /* ── TESTIMONIALS ────────────────────────────────────────── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      padding: 32px;
+    }
+
+    .stars {
+      color: #fb8500;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-card p {
+      font-size: 1.125rem;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .testi-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-family: var(--font-display);
+    }
+
+    .testi-author strong {
+      display: block;
+      font-family: var(--font-display);
+    }
+
+    .testi-author span {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ── CTA BANNER ──────────────────────────────────────────── */
+    #cta-banner {
+      position: relative;
+      padding: 80px 0;
+      text-align: center;
+      overflow: hidden;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .cta-bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 100%, rgba(0, 139, 139, 0.1) 0%, transparent 70%);
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .cta-desc {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: 40px;
+    }
+
+    .btn-large {
+      font-size: 1.125rem;
+      padding: 20px 48px;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    #footer {
+      border-top: 1px solid var(--color-border);
+      background: var(--color-bg);
+      padding: 80px 24px 40px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 48px;
+      margin-bottom: 80px;
+    }
+
+    .footer-brand .nav-logo {
+      margin-bottom: 16px;
+    }
+
+    .footer-tagline {
+      color: var(--color-text-muted);
+      max-width: 250px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      color: var(--color-text-muted);
+      transition: var(--transition-fast);
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-text);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+    }
+
+    .social-link:hover {
+      background: var(--color-text);
+      color: var(--color-bg);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      border-top: 1px solid var(--color-border);
+      padding-top: 32px;
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* ── MEDIA QUERIES ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-headline {
+        font-size: 4rem;
+      }
+
+      .case-study-layout,
+      .about-layout {
+        gap: 40px;
+      }
+
+      .cs-metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-container {
+        padding: 80px 24px;
+      }
+
+      .hero-headline {
+        font-size: 3rem;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .stat-divider {
+        width: 100px;
+        height: 1px;
+      }
+
+      .case-study-layout,
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-img-frame {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .about-visual {
+        justify-content: flex-start;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--color-bg);
+        padding: 24px;
+        flex-direction: column;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .btn-nav {
+        display: none;
+      }
+
+      .ba-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-headline {
+        font-size: 2.5rem;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+      }
+
+      .cs-metrics {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <canvas id="particles-canvas"></canvas>
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" id="nav-logo-link">
+        <img src="logo.png" alt="Ashen Studio Logo" style="height: 40px; width: auto; object-fit: contain;" />
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#gallery" class="nav-link">Work</a></li>
+        <li><a href="#case-study" class="nav-link">Case Study</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+      <a href="mailto:hello@ashenstudio.com" class="btn-nav" id="nav-cta">Book a Slot</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal-up">YouTube Thumbnail Artist</p>
+      <h1 class="hero-headline reveal-up" id="glowing-headline">
+        <span class="line">Thumbnails That</span>
+        <span class="line accent-glow">Stop The Scroll.</span>
+      </h1>
+      <p class="hero-sub reveal-up">
+        Cinematic. Bold. Click-worthy. I design thumbnails that turn impressions into views — engineered for virality.
+      </p>
+      <div class="hero-cta-group reveal-up">
+        <a href="#gallery" class="btn-primary" id="hero-cta-primary">View My Work</a>
+      </div>
+      <div class="hero-stats reveal-up">
+        <div class="stat">
+          <span class="stat-num">500<span class="stat-plus">+</span></span>
+          <span class="stat-label">Thumbnails Delivered</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">98<span class="stat-plus">%</span></span>
+          <span class="stat-label">Client Retention</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">12M<span class="stat-plus">+</span></span>
+          <span class="stat-label">Views Generated</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <section id="gallery">
+
+    <div id="scroll-track" class="scroll-track">
+      <div class="sticky-wrapper">
+        <div class="section-header reveal-up" style="text-align:center; margin-bottom: 2rem;">
+          <p class="section-label">Portfolio</p>
+          <h2 class="section-title">Selected <span class="text-red">Works</span></h2>
+          <p class="section-desc">Keep scrolling down to reveal the layers. Move your mouse for depth.</p>
+        </div>
+
+        <div class="thumbnail-box" id="magic-box">
+          <img src="8.png" id="background-layer" class="layer" data-speed="1">
+          <img src="7.png" class="layer" data-speed="2">
+          <img src="6.png" class="layer" data-speed="3">
+          <img src="5.png" class="layer" data-speed="4">
+          <img src="4.png" class="layer" data-speed="6">
+          <img src="3.png" id="image-three" class="layer" data-speed="8">
+          <img src="2.png" id="image-two" class="layer" data-speed="10">
+          <img src="1.png" id="front-image" class="layer" data-speed="15">
+        </div>
+      </div>
+    </div>
+
+    <div class="section-container" style="padding-top: 40px;">
+      <div class="ba-grid" id="before-after-grid">
+
+        <div class="ba-item reveal-up">
+          <img src="S1.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F1.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+        <div class="ba-item reveal-up">
+          <img src="S2.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F2.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+        <div class="ba-item reveal-up">
+          <img src="S3.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F3.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+        <div class="ba-item reveal-up">
+          <img src="S4.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F4.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+        <div class="ba-item reveal-up">
+          <img src="S5.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F5.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+        <div class="ba-item reveal-up">
+          <img src="S6.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F6.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+        <div class="ba-item reveal-up">
+          <img src="S7.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F7.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+        <div class="ba-item reveal-up">
+          <img src="S8.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F8.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+        <div class="ba-item reveal-up">
+          <img src="S9.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F9.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+        <div class="ba-item reveal-up">
+          <img src="S10.jpg" alt="Sketch" class="img-sketch" />
+          <img src="F10.jpg" alt="Final Result" class="img-final" />
+          <div class="ba-divider"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="case-study">
+    <div class="section-container">
+      <div class="section-header reveal-up">
+        <p class="section-label">Deep Dive</p>
+        <h2 class="section-title">Case <span class="text-red">Study</span></h2>
+      </div>
+
+      <div class="case-study-layout">
+        <div class="case-study-image reveal-left">
+          <div class="cs-img-frame">
+            <img src="images/thumb_break_limits.png" alt="Break Your Limits — Case Study Thumbnail" />
+            <div class="cs-badge glass-card">
+              <span class="badge-num">+340%</span>
+              <span class="badge-label">CTR Increase</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-study-content reveal-right">
+          <span class="cs-label">Client: @GrowWithMarcus · 890K Subscribers</span>
+          <h3 class="cs-title">From 3.1% to 12.1% CTR in 30 Days</h3>
+          <p class="cs-desc">
+            Marcus was averaging a 3.1% click-through rate on his motivational content. His thumbnails lacked visual
+            hierarchy and didn't create emotional urgency. After a full thumbnail system overhaul using cinematic
+            composition, bold type, and strategic contrast — his channel exploded.
+          </p>
+
+          <div class="cs-metrics">
+            <div class="metric-card glass-card" id="metric-1">
+              <span class="metric-val">3.1% → 12.1%</span>
+              <span class="metric-key">CTR Growth</span>
+            </div>
+            <div class="metric-card glass-card" id="metric-2">
+              <span class="metric-val">6.7M</span>
+              <span class="metric-key">Impressions in 30 Days</span>
+            </div>
+            <div class="metric-card glass-card" id="metric-3">
+              <span class="metric-val">+112K</span>
+              <span class="metric-key">New Subscribers</span>
+            </div>
+          </div>
+
+          <blockquote class="cs-quote glass-card">
+            <p>"My channel transformed overnight. The thumbnails don't just look good — they convert. Best investment
+              I've made for my channel."</p>
+            <cite>— Marcus A., YouTube Creator</cite>
+          </blockquote>
+
+          <a href="mailto:hello@ashenstudio.com" class="btn-primary" id="cs-cta">Get This For Your Channel</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-container">
+      <div class="about-layout">
+        <div class="about-visual reveal-left">
+          <div class="about-avatar glass-card">
+            <div class="avatar-ring">
+              <div class="avatar-icon">✦</div>
+            </div>
+            <p class="avatar-label">Faceless Brand</p>
+          </div>
+          <div class="about-accent-line"></div>
+        </div>
+
+        <div class="about-content reveal-right">
+          <p class="section-label">About</p>
+          <h2 class="section-title">The <span class="text-red">Mind</span> Behind The Art</h2>
+          <p class="about-desc">
+            I'm an independent thumbnail artist obsessed with one thing: making videos get clicked. With 5+ years in the
+            space, I've built a system that blends cinematic visual storytelling with data-driven CTR psychology.
+          </p>
+          <p class="about-desc">
+            No face. No team. Just me — fully dedicated to making your content impossible to ignore on the timeline.
+          </p>
+
+          <div class="about-skills">
+            <div class="skill-tag" id="skill-1">Photoshop</div>
+            <div class="skill-tag" id="skill-2">Cinematic Lighting</div>
+            <div class="skill-tag" id="skill-3">Color Theory</div>
+            <div class="skill-tag" id="skill-4">Typography</div>
+            <div class="skill-tag" id="skill-5">CTR Psychology</div>
+            <div class="skill-tag" id="skill-6">Visual Hierarchy</div>
+          </div>
+
+          <div class="about-creds">
+            <div class="cred" id="cred-1">
+              <span class="cred-icon">▲</span>
+              <span>Top 1% thumbnail artist on Fiverr for 3 years running</span>
+            </div>
+            <div class="cred" id="cred-2">
+              <span class="cred-icon">▲</span>
+              <span>Worked with channels from 10K → 5M subscribers</span>
+            </div>
+            <div class="cred" id="cred-3">
+              <span class="cred-icon">▲</span>
+              <span>Average client CTR improvement: +280%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="section-container">
+      <div class="section-header reveal-up">
+        <p class="section-label">Social Proof</p>
+        <h2 class="section-title">What Creators <span class="text-red">Say</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card glass-card reveal-up" id="testi-1">
+          <div class="stars">★★★★★</div>
+          <p>"My CTR went from 4% to 11% in the first week. Absolutely insane results. The thumbnails look like movie
+            posters."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #e63946, #333);">J</div>
+            <div>
+              <strong>Jake M.</strong>
+              <span>1.2M Subscribers</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-card reveal-up" id="testi-2">
+          <div class="stars">★★★★★</div>
+          <p>"I've hired 6 thumbnail artists. Ashen is on a completely different level. The attention to detail is
+            unreal."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #008B8B, #333);">S</div>
+            <div>
+              <strong>Sarah K.</strong>
+              <span>480K Subscribers</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-card reveal-up" id="testi-3">
+          <div class="stars">★★★★★</div>
+          <p>"Delivery is fast, communication is clean, and the quality speaks for itself. My best performing videos all
+            have Ashen thumbnails."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #e63946, #008B8B);">D</div>
+            <div>
+              <strong>David R.</strong>
+              <span>2.8M Subscribers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta-banner">
+    <div class="cta-bg-gradient"></div>
+    <div class="section-container">
+      <div class="cta-inner reveal-up">
+        <p class="section-label">Limited Spots Available</p>
+        <h2 class="cta-title">Ready to <span class="text-red">Dominate</span> Your Niche?</h2>
+        <p class="cta-desc">Slots are limited to maintain quality. Book your spot now before the next queue fills up.
+        </p>
+        <a href="mailto:hello@ashenstudio.com" class="btn-primary btn-large" id="cta-banner-btn">Book Your Slot →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-logo">
+          <img src="logo.png" alt="Ashen Studio Logo" style="height: 40px; width: auto; object-fit: contain;" />
+        </a>
+        <p class="footer-tagline">Thumbnails engineered for virality.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#gallery">Work</a>
+        <a href="#case-study">Case Study</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="footer-social">
+        <a href="#" class="social-link" id="social-twitter" aria-label="Twitter">𝕏</a>
+        <a href="#" class="social-link" id="social-instagram" aria-label="Instagram">◎</a>
+        <a href="#" class="social-link" id="social-youtube" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Ashen Studio. All rights reserved. Crafted with obsession.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- 0. AMBIENT MOUSE GLOW ---
+      const glow = document.createElement('div');
+      glow.classList.add('ambient-glow');
+      document.body.appendChild(glow);
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        glow.style.left = `${mouseX}px`;
+        glow.style.top = `${mouseY}px`;
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+
+      // --- 0.5 GLASS CARD TILT EFFECT ---
+      document.querySelectorAll('.glass-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -4;
+          const rotateY = ((x - centerX) / centerX) * 4;
+
+          card.style.transform = `perspective(1000px) scale3d(1.02, 1.02, 1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          card.style.zIndex = '10';
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `perspective(1000px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)`;
+          card.style.zIndex = '1';
+          card.style.setProperty('--mouse-x', `-1000px`);
+        });
+      });
+
+      // --- 1. NAVBAR SCROLL EFFECT ---
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // --- 2. MOBILE MENU TOGGLE ---
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('nav-links');
+
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+        });
+      });
+
+      // --- 3. SCROLL REVEAL ANIMATIONS ---
+      const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+      const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+      const revealOnScroll = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('reveal-visible');
+          observer.unobserve(entry.target);
+        });
+      }, revealOptions);
+
+      revealElements.forEach(el => revealOnScroll.observe(el));
+
+      // --- 4. PARTICLE BACKGROUND CANVAS ---
+      const canvas = document.getElementById('particles-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let particlesArray;
+
+        function setCanvasSize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+
+        setCanvasSize();
+        window.addEventListener('resize', () => { setCanvasSize(); initParticles(); });
+
+        class Particle {
+          constructor(x, y, directionX, directionY, size, color) {
+            this.x = x; this.y = y; this.directionX = directionX;
+            this.directionY = directionY; this.size = size; this.color = color;
+            this.baseAlpha = Math.random() * 0.7 + 0.1;
+            this.isEmber = Math.random() > 0.75;
+          }
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+            if (this.isEmber) {
+              ctx.fillStyle = `rgba(0, 139, 139, ${this.baseAlpha})`;
+              ctx.shadowBlur = 15;
+              ctx.shadowColor = '#008B8B';
+            } else {
+              ctx.fillStyle = `rgba(255, 255, 255, ${this.baseAlpha * 0.4})`;
+              ctx.shadowBlur = 0;
+            }
+            ctx.fill();
+          }
+          update() {
+            if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+            if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+            this.x += this.directionX + (mouseX - canvas.width / 2) * 0.0003;
+            this.y += this.directionY - (this.isEmber ? 1.5 : 0.5);
+            if (this.y < 0) {
+              this.y = canvas.height;
+              this.x = Math.random() * canvas.width;
+            }
+            this.draw();
+          }
+        }
+
+        function initParticles() {
+          particlesArray = [];
+          let numberOfParticles = (canvas.height * canvas.width) / 8000;
+          if (numberOfParticles > 200) numberOfParticles = 200;
+
+          for (let i = 0; i < numberOfParticles; i++) {
+            let size = (Math.random() * 3) + 0.5;
+            let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+            let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+            let directionX = (Math.random() * 1) - 0.5;
+            let directionY = (Math.random() * 0.5) - 0.2;
+            particlesArray.push(new Particle(x, y, directionX, directionY, size, '#ffffff'));
+          }
+        }
+
+        function animateParticles() {
+          requestAnimationFrame(animateParticles);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+          }
+        }
+
+        initParticles();
+        animateParticles();
+      }
+
+      // --- 5. THE 3D SCROLL LOGIC ---
+      const track = document.getElementById('scroll-track');
+      const magicBox = document.getElementById('magic-box');
+      if (track && magicBox) {
+        const layers = magicBox.querySelectorAll(".layer");
+
+        window.addEventListener("scroll", function () {
+          const trackRect = track.getBoundingClientRect();
+          const scrollDistance = track.offsetHeight - window.innerHeight;
+          const scrolledPixels = -trackRect.top;
+
+          let percentage = (scrolledPixels / scrollDistance) * 100;
+          if (percentage < 0) percentage = 0;
+          if (percentage > 100) percentage = 100;
+
+          layers.forEach(function (layer, index) {
+            if (index === 0) return;
+            const threshold = index * 12;
+            if (percentage > threshold) {
+              layer.style.opacity = "1";
+            } else {
+              layer.style.opacity = "0";
+            }
+          });
+        });
+
+        magicBox.addEventListener("mousemove", function (event) {
+          const rect = magicBox.getBoundingClientRect();
+          const mX = event.clientX - rect.left;
+          const mY = event.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          layers.forEach(function (layer) {
+            const speed = layer.getAttribute("data-speed");
+            const x = (centerX - mX) * speed / 100;
+            const y = (centerY - mY) * speed / 100;
+            layer.style.transform = `translateX(${x}px) translateY(${y}px)`;
+          });
+        });
+      }
+
+      // --- 6. THE BEFORE/AFTER SLIDER LOGIC ---
+      const baItems = document.querySelectorAll('.ba-item');
+      baItems.forEach(item => {
+        const finalImg = item.querySelector('.img-final');
+        const divider = item.querySelector('.ba-divider');
+
+        item.addEventListener('mousemove', function (e) {
+          item.classList.add('is-hovering');
+          const rect = item.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          let percent = (x / rect.width) * 100;
+
+          if (percent < 0) percent = 0;
+          if (percent > 100) percent = 100;
+
+          finalImg.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+          divider.style.left = `${percent}%`;
+        });
+
+        item.addEventListener('mouseleave', function () {
+          item.classList.remove('is-hovering');
+          finalImg.style.clipPath = `polygon(0 0, 50% 0, 50% 100%, 0 100%)`;
+          divider.style.left = `50%`;
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
