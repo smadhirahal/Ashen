@@ -14,14 +14,16 @@
 
   <style>
     :root {
-      --color-bg: #050505;
-      --color-surface: #111111;
+      /* ඔයා දුන්න අලුත් පාට ටික මෙතන තියෙනවා */
+      --color-bg: #0A0A0A;
+      --color-surface: #121212;
       --color-surface-light: #1a1a1a;
       --color-border: rgba(255, 255, 255, 0.08);
-      --color-text: #ffffff;
-      --color-text-muted: #888888;
-      --color-accent: #008B8B;
-      --color-accent-glow: rgba(0, 139, 139, 0.4);
+      --color-text: #FFFFFF;
+      --color-text-muted: #B4B4B4;
+      --color-accent: #EBA03C;
+      --color-accent-glow: rgba(235, 160, 60, 0.4);
+      --color-button: #C3781E;
 
       --font-sans: 'Inter', sans-serif;
       --font-display: 'Outfit', sans-serif;
@@ -100,7 +102,8 @@
       width: 50vw;
       height: 50vw;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 139, 139, 0.08) 0%, rgba(5, 5, 5, 0) 70%);
+      /* Changed to golden glow */
+      background: radial-gradient(circle, rgba(235, 160, 60, 0.08) 0%, rgba(10, 10, 10, 0) 70%);
       transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: -1;
@@ -149,7 +152,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--color-accent);
+      background-color: var(--color-button);
       color: white;
       padding: 16px 32px;
       border-radius: 8px;
@@ -158,13 +161,13 @@
       transition: var(--transition-fast);
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 20px var(--color-accent-glow);
+      box-shadow: 0 4px 20px rgba(195, 120, 30, 0.3);
     }
 
     .btn-primary:hover {
-      background-color: #00a8a8;
+      background-color: #d98a29;
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0, 139, 139, 0.6);
+      box-shadow: 0 8px 30px rgba(195, 120, 30, 0.5);
     }
 
     .btn-ghost {
@@ -234,7 +237,7 @@
     }
 
     #navbar.scrolled {
-      background: rgba(5, 5, 5, 0.8);
+      background: rgba(10, 10, 10, 0.8);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       padding: 16px 0;
@@ -325,7 +328,7 @@
       transform: translate(-50%, -50%);
       width: 800px;
       height: 800px;
-      background: radial-gradient(circle, rgba(0, 139, 139, 0.15) 0%, rgba(5, 5, 5, 0) 70%);
+      background: radial-gradient(circle, rgba(235, 160, 60, 0.12) 0%, rgba(10, 10, 10, 0) 70%);
       z-index: 0;
       pointer-events: none;
     }
@@ -339,8 +342,8 @@
     .hero-eyebrow {
       display: inline-block;
       padding: 6px 16px;
-      background: rgba(0, 139, 139, 0.1);
-      border: 1px solid rgba(0, 139, 139, 0.2);
+      background: rgba(235, 160, 60, 0.1);
+      border: 1px solid rgba(235, 160, 60, 0.2);
       border-radius: 100px;
       font-size: 0.875rem;
       font-weight: 600;
@@ -369,7 +372,7 @@
       -webkit-background-clip: text;
       background-clip: text;
       animation: shine 4s linear infinite;
-      text-shadow: 0 0 40px rgba(0, 139, 139, 0.3);
+      text-shadow: 0 0 40px rgba(235, 160, 60, 0.3);
     }
 
     @keyframes shine {
@@ -413,6 +416,7 @@
       font-size: 2.5rem;
       font-weight: 800;
       line-height: 1;
+      color: var(--color-text);
     }
 
     .stat-plus {
@@ -621,6 +625,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
     }
 
     .badge-num {
@@ -680,7 +688,7 @@
       font-family: var(--font-display);
       font-size: 1.5rem;
       font-weight: 700;
-      color: white;
+      color: var(--color-text);
     }
 
     .metric-key {
@@ -698,6 +706,7 @@
       font-size: 1.125rem;
       font-style: italic;
       margin-bottom: 16px;
+      color: var(--color-text);
     }
 
     .cs-quote cite {
@@ -788,6 +797,7 @@
       border: 1px solid var(--color-border);
       border-radius: 100px;
       font-size: 0.875rem;
+      color: var(--color-text);
     }
 
     .about-creds {
@@ -801,6 +811,7 @@
       align-items: flex-start;
       gap: 12px;
       font-size: 1rem;
+      color: var(--color-text);
     }
 
     .cred-icon {
@@ -821,7 +832,7 @@
     }
 
     .stars {
-      color: #fb8500;
+      color: var(--color-accent);
       margin-bottom: 16px;
       letter-spacing: 2px;
     }
@@ -830,6 +841,7 @@
       font-size: 1.125rem;
       margin-bottom: 32px;
       font-style: italic;
+      color: var(--color-text);
     }
 
     .testi-author {
@@ -847,11 +859,13 @@
       justify-content: center;
       font-weight: bold;
       font-family: var(--font-display);
+      color: #fff;
     }
 
     .testi-author strong {
       display: block;
       font-family: var(--font-display);
+      color: var(--color-text);
     }
 
     .testi-author span {
@@ -871,7 +885,7 @@
     .cta-bg-gradient {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 100%, rgba(0, 139, 139, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle at 50% 100%, rgba(235, 160, 60, 0.1) 0%, transparent 70%);
     }
 
     .cta-inner {
@@ -887,6 +901,7 @@
       font-weight: 800;
       line-height: 1.2;
       margin-bottom: 24px;
+      color: var(--color-text);
     }
 
     .cta-desc {
@@ -956,6 +971,7 @@
       align-items: center;
       justify-content: center;
       transition: var(--transition-fast);
+      color: var(--color-text-muted);
     }
 
     .social-link:hover {
@@ -1345,7 +1361,7 @@
           <p>"My CTR went from 4% to 11% in the first week. Absolutely insane results. The thumbnails look like movie
             posters."</p>
           <div class="testi-author">
-            <div class="testi-avatar" style="background: linear-gradient(135deg, #e63946, #333);">J</div>
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #EBA03C, #333);">J</div>
             <div>
               <strong>Jake M.</strong>
               <span>1.2M Subscribers</span>
@@ -1357,7 +1373,7 @@
           <p>"I've hired 6 thumbnail artists. Ashen is on a completely different level. The attention to detail is
             unreal."</p>
           <div class="testi-author">
-            <div class="testi-avatar" style="background: linear-gradient(135deg, #008B8B, #333);">S</div>
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #C3781E, #333);">S</div>
             <div>
               <strong>Sarah K.</strong>
               <span>480K Subscribers</span>
@@ -1369,7 +1385,7 @@
           <p>"Delivery is fast, communication is clean, and the quality speaks for itself. My best performing videos all
             have Ashen thumbnails."</p>
           <div class="testi-author">
-            <div class="testi-avatar" style="background: linear-gradient(135deg, #e63946, #008B8B);">D</div>
+            <div class="testi-avatar" style="background: linear-gradient(135deg, #EBA03C, #C3781E);">D</div>
             <div>
               <strong>David R.</strong>
               <span>2.8M Subscribers</span>
@@ -1528,9 +1544,10 @@
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
             if (this.isEmber) {
-              ctx.fillStyle = `rgba(0, 139, 139, ${this.baseAlpha})`;
+              /* Changed particle colors to golden */
+              ctx.fillStyle = `rgba(235, 160, 60, ${this.baseAlpha})`;
               ctx.shadowBlur = 15;
-              ctx.shadowColor = '#008B8B';
+              ctx.shadowColor = '#EBA03C';
             } else {
               ctx.fillStyle = `rgba(255, 255, 255, ${this.baseAlpha * 0.4})`;
               ctx.shadowBlur = 0;
