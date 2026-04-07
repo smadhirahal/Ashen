@@ -315,7 +315,8 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 24px 80px;
+      padding: 120px 24px 160px;
+      /* Padding hecchu madalide overlap thappisalu */
       overflow: hidden;
     }
 
@@ -331,7 +332,6 @@
       pointer-events: none;
     }
 
-    /* Added margin-top: 60px here to push the hero content down */
     .hero-content {
       position: relative;
       z-index: 1;
@@ -344,9 +344,7 @@
 
     .hero-profile-img {
       width: 170px;
-      /* Increased from 140px */
       height: 170px;
-      /* Increased from 140px */
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid var(--color-accent);
@@ -364,13 +362,11 @@
       position: relative;
     }
 
-    /* Added white-space: nowrap to force text to stay on one line */
     .hero-headline .line {
       display: block;
       white-space: nowrap;
     }
 
-    /* Added class to make the first line slightly smaller */
     .hero-headline .line-small {
       font-size: 0.8em;
     }
@@ -448,7 +444,8 @@
 
     .hero-scroll-hint {
       position: absolute;
-      bottom: 40px;
+      bottom: 20px;
+      /* Kelage space sariyagi set madalide */
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -627,28 +624,6 @@
       align-items: center;
       justify-content: center;
       z-index: 1;
-    }
-
-    .avatar-ring {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-surface-light), var(--color-bg));
-      border: 2px solid var(--color-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      box-shadow: 0 0 30px var(--color-accent-glow);
-      overflow: hidden;
-      padding: 4px;
-    }
-
-    .avatar-ring img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
     }
 
     .about-accent-line {
@@ -1117,11 +1092,11 @@
   <section id="about">
     <div class="section-container">
       <div class="about-layout">
+
         <div class="about-visual reveal-left">
-          <div class="about-avatar glass-card">
-            <div class="avatar-ring">
-              <img src="face.jpg" alt="Profile Face" />
-            </div>
+          <div class="about-avatar glass-card"
+            style="background-color: #000000; padding: 0; overflow: hidden; border: 1px solid var(--color-border);">
+            <img src="face.jpg" alt="Profile Face" style="width: 100%; height: 100%; object-fit: cover;" />
           </div>
           <div class="about-accent-line"></div>
         </div>
@@ -1243,9 +1218,13 @@
         <a href="#" class="social-link" id="social-youtube" aria-label="YouTube">▶</a>
       </div>
     </div>
+
     <div class="footer-bottom">
-      <p>© 2026 Ashen Studio. All rights reserved. Crafted with obsession.</p>
+      <p>© 2026 <a href="https://samadhirahal.top/" target="_blank"
+          style="color: var(--color-accent); text-decoration: none;">Samadhi Rahal</a>. All rights reserved. Crafted
+        with obsession.</p>
     </div>
+
   </footer>
 
   <script>
